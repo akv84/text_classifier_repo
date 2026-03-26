@@ -1,0 +1,39 @@
+data:
+  negative_data_pattern: "data/raw/negative_df*"   # glob pattern for batched negative files
+  positive_data_path:    "data/raw/positive_df"
+  processed_output_path: "data/processed/merged_processed.tsv"
+  output_dir:            "output/"
+
+preprocessing:
+  # Columns on which to run the full NLP pipeline (lower/strip/lemmatize/stopword)
+  text_columns:
+    - Abstract
+    - Title
+    - Function
+  # Column used as the primary feature for model training
+  primary_feature_column: clean_text_Abstract
+
+model:
+  test_size:    0.2
+  random_state: 42
+
+  logistic_regression:
+    solver:  liblinear
+    C:       10
+    penalty: l2
+
+  word2vec:
+    vector_size: 100
+    window:      5
+    min_count:   1
+    workers:     4
+    seed:        42
+
+  tfidf:
+    use_idf: true
+
+output:
+  models_dir:      "output/models/"
+  plots_dir:       "output/plots/"
+  predictions_dir: "output/predictions/"
+  metrics_file:    "output/metrics_summary.tsv"
