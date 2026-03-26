@@ -142,12 +142,3 @@ model:
     window: 5               # context window
 ```
 
-
-
----
-
-## Citation
-
-If you use this code, please cite:
-
-> [Your paper citation here]
